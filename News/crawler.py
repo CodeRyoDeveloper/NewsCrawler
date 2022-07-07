@@ -10,7 +10,6 @@ def getdata(url):
         data=response.read().decode("utf-8") 
     soup=bs4.BeautifulSoup(data,"html.parser")
     root=soup.find_all("div",class_="cd__content")
-    B=os.getcwd()
     for root in root:
         Del=".!@#$%^&*()\/:*?<>|-+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
         characters="\/:*?<>|"
