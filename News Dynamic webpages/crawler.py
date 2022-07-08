@@ -1,8 +1,8 @@
 import shutil   
 import bs4
 import os 
-import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 def pagedata(url):
     driver.get(url)
     soup=bs4.BeautifulSoup(driver.page_source,"html.parser")
@@ -12,9 +12,11 @@ def pagedata(url):
         return article.text
     else:
         return "None"
+options=Options()
+options.chome_executable_path="執行擋路徑"
 local=os.getcwd()
 ch=local.replace("\\","/")
-driver=webdriver.Chrome(ch+"/chromedriver.exe")
+driver=webdriver.Chrome(options=options)
 url="https://edition.cnn.com/business"
 driver.get(url)
 soup=bs4.BeautifulSoup(driver.page_source,"html.parser")
@@ -29,7 +31,6 @@ for root in root:
     file.write(root.text+"\n")
     print("https://edition.cnn.com"+root.a.get("href"))
     file.write("https://edition.cnn.com"+root.a.get("href")+"\n")
-    time.sleep(3)
     file.write(pagedata("https://edition.cnn.com"+root.a.get("href")))
     file.close()
     for num in os.listdir():
