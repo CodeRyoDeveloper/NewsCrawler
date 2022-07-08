@@ -14,6 +14,9 @@ def pagedata(url):
         return "None"
 options=Options()
 options.chome_executable_path="執行擋路徑"
+options.add_experimental_option("excludeSwitches", ["enable-automation"])
+options.add_experimental_option('useAutomationExtension', False)
+options.add_experimental_option("prefs", {"profile.password_manager_enabled": False, "credentials_enable_service": False})
 local=os.getcwd()
 ch=local.replace("\\","/")
 driver=webdriver.Chrome(options=options)
